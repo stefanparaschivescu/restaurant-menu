@@ -1,6 +1,5 @@
 $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 
-  // Same as document.querySelector("#navbarToggle").addEventListener("blur",...
   $("#navbarToggle").blur(function (event) {
     var screenWidth = window.innerWidth;
     if (screenWidth < 768) {
@@ -114,15 +113,12 @@ dc.loadMenuItems = function (categoryShort) {
 // Builds HTML for the categories page based on the data
 // from the server
 function buildAndShowCategoriesHTML (categories) {
-  // Load title snippet of categories page
   $ajaxUtils.sendGetRequest(
     categoriesTitleHtml,
     function (categoriesTitleHtml) {
-      // Retrieve single category snippet
       $ajaxUtils.sendGetRequest(
         categoryHtml,
         function (categoryHtml) {
-          // Switch CSS class active to menu button
           switchMenuToActive();
 
           var categoriesViewHtml =
@@ -169,15 +165,12 @@ function buildCategoriesViewHtml(categories,
 // Builds HTML for the single category page based on the data
 // from the server
 function buildAndShowMenuItemsHTML (categoryMenuItems) {
-  // Load title snippet of menu items page
   $ajaxUtils.sendGetRequest(
     menuItemsTitleHtml,
     function (menuItemsTitleHtml) {
-      // Retrieve single menu item snippet
       $ajaxUtils.sendGetRequest(
         menuItemHtml,
         function (menuItemHtml) {
-          // Switch CSS class active to menu button
           switchMenuToActive();
 
           var menuItemsViewHtml =
@@ -210,7 +203,6 @@ function buildMenuItemsViewHtml(categoryMenuItems,
   var finalHtml = menuItemsTitleHtml;
   finalHtml += "<section class='row'>";
 
-  // Loop over menu items
   var menuItems = categoryMenuItems.menu_items;
   var catShortName = categoryMenuItems.category.short_name;
   for (var i = 0; i < menuItems.length; i++) {
@@ -265,7 +257,6 @@ function buildMenuItemsViewHtml(categoryMenuItems,
 function insertItemPrice(html,
                          pricePropName,
                          priceValue) {
-  // If not specified, replace with empty string
   if (!priceValue) {
     return insertProperty(html, pricePropName, "");
   }
@@ -280,7 +271,6 @@ function insertItemPrice(html,
 function insertItemPortionName(html,
                                portionPropName,
                                portionValue) {
-  // If not specified, return original string
   if (!portionValue) {
     return insertProperty(html, portionPropName, "");
   }
